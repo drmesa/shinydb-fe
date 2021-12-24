@@ -23,25 +23,26 @@ class App extends Component {
 
     return (
       <div className="App">
-        <header className="App-header">
-          <div className="form-group">
-                <label htmlFor="formGroupExampleInput">Pokemon</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="formGroupExampleInput"
-                  placeholder="Search by dex id or name"
-                />
-              </div>
-        </header>
         <body>
         <div className="App-intro">
+        <div className="form-group">
+                        <label htmlFor="formGroupExampleInput">Pokemon</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="formGroupExampleInput"
+                          placeholder="Search by dex id or name"
+                        />
+                      </div>
           <h2>Pokemon List</h2>
           <table class="table table-striped">
             <thead>
               <tr>
                 <th>National Dex Id</th>
                 <th>Name</th>
+                <th>Regional Form</th>
+                <th>Best Game</th>
+                <th>Odds</th>
               </tr>
             </thead>
             <tbody>
@@ -50,6 +51,9 @@ class App extends Component {
                   <React.Fragment>
                     <td>{mon.dexId}</td>
                     <td>{mon.name}</td>
+                    <td>{mon.form}</td>
+                    <td>game</td>
+                    <td>odds</td>
                   </React.Fragment>
                 </tr>
               )}
