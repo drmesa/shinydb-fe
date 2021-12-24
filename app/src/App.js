@@ -5,17 +5,17 @@ import './App.css';
 class App extends Component {
   state = {
     isLoading: true,
-    groups: []
+    mons: []
   };
 
     async componentDidMount() {
-      const response = await fetch('/mon/mons?ids=2&ids=1');
+      const response = await fetch('/mon/mons');
       const body = await response.json();
-      this.setState({ groups: body, isLoading: false });
+      this.setState({ mons: body, isLoading: false });
     }
 
   render() {
-    const {groups, isLoading} = this.state;
+    const {mons, isLoading} = this.state;
 
     if (isLoading) {
       return <p>Loading...</p>;
@@ -26,12 +26,22 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <div className="App-intro">
-            <h2>JUG List</h2>
-            {groups.map(group =>
-              <div key={group.id}>
-                {group.name}
-              </div>
-            )}
+            <h2>Pokemon List</h2>
+            <table>
+              <tr>
+                <th>National Dex Id</th>
+                <th>Name</th>
+              </tr>
+              <tr>
+              {mons.map(mon =>
+                            <div key={mon.id}>
+                              <td>{mon.dexId}</td>
+                              <td>{mon.name}</td>
+                            </div>
+                          )}
+              </tr>
+            </table>
+
           </div>
         </header>
       </div>
