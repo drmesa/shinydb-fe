@@ -8,11 +8,11 @@ class App extends Component {
     mons: []
   };
 
-    async componentDidMount() {
-      const response = await fetch('/mon/mons');
-      const body = await response.json();
-      this.setState({ mons: body, isLoading: false });
-    }
+  async componentDidMount() {
+    const response = await fetch('/mon/mons');
+    const body = await response.json();
+    this.setState({ mons: body, isLoading: false });
+  }
 
   render() {
     const {mons, isLoading} = this.state;
@@ -24,26 +24,41 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <div className="App-intro">
-            <h2>Pokemon List</h2>
-            <table>
+          <div className="form-group">
+                <label htmlFor="formGroupExampleInput">Pokemon</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="formGroupExampleInput"
+                  placeholder="Search by dex id or name"
+                />
+              </div>
+        </header>
+        <body>
+        <div className="App-intro">
+          <h2>Pokemon List</h2>
+          <table class="table table-striped">
+            <thead>
               <tr>
                 <th>National Dex Id</th>
                 <th>Name</th>
               </tr>
-              <tr>
+            </thead>
+            <tbody>
               {mons.map(mon =>
-                            <div key={mon.id}>
-                              <td>{mon.dexId}</td>
-                              <td>{mon.name}</td>
-                            </div>
-                          )}
-              </tr>
-            </table>
+                <tr>
+                  <React.Fragment>
+                    <td>{mon.dexId}</td>
+                    <td>{mon.name}</td>
+                  </React.Fragment>
+                </tr>
+              )}
 
-          </div>
-        </header>
+            </tbody>
+          </table>
+
+        </div>
+        </body>
       </div>
     );
   }
